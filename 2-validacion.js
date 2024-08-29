@@ -19,26 +19,24 @@ function validarEmail() {
     let esCorrecto = true;
     let emailTxt = document.getElementById('email').value;
     let emailErrorTxt = document.getElementById('emailError');
-    let emailRegex = new RegExp("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})*/$");
+    let emailRegex = new RegExp('[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}');
 
 
     if (emailRegex.test(emailTxt.trim())) {
+        document.getElementById('mail').classList.add('success');
+        document.getElementById('mail').classList.remove('error-input');
         emailErrorTxt.textContent = '';
-        document.getElementById('mail').classList.add('error-input');
-        document.getElementById('mail').classList.remove('succes');
-        return false;
     } else {
-        esCorrecto = false;
-        emailErrorTxt.textContent = ' Por favor, introduce un email válido.';
-        // document.getElementById('mail').classList.remove('succes');
-        // document.getElementById('mail').classList.add('error-input');
-
-        return true;
-
+        document.getElementById('mail').classList.remove('success');
+        document.getElementById('mail').classList.add('error-input');
+        emailErrorTxt.textContent = 'Por favor, introduce un email válido.';
     }
-
+    return true;
 
 }
+
+
+
 function validarPassword() {
 
     let passwordTxt = document.getElementById('password').value;
@@ -96,20 +94,20 @@ function validarFecha() {
 
     fechaUsuarioTxt = new Date(fechaUsuarioTxt);
 
-if(fechaUsuarioTxt > fechaActual || fechaUsuarioTxt < fechaMinima){
-    fechaError.textContent = ' por favor introduce fecha válida.';
-    document.getElementById('fecha').classList.add('error-input');
-    document.getElementById('fecha').classList.remove('success');
-    return false;
-    //error
+    if (fechaUsuarioTxt > fechaActual || fechaUsuarioTxt < fechaMinima) {
+        fechaError.textContent = ' por favor introduce fecha válida.';
+        document.getElementById('fecha').classList.add('error-input');
+        document.getElementById('fecha').classList.remove('success');
+        return false;
+        //error
 
-}else{
-    //correcto
-    fechaError.textContent = ' ';
-    document.getElementById('fecha').classList.add('succes');
-    document.getElementById('fecha').classList.remove('error-input');
-    return true;
-}
+    } else {
+        //correcto
+        fechaError.textContent = ' ';
+        document.getElementById('fecha').classList.add('succes');
+        document.getElementById('fecha').classList.remove('error-input');
+        return true;
+    }
 
 
 }
@@ -121,17 +119,17 @@ if(fechaUsuarioTxt > fechaActual || fechaUsuarioTxt < fechaMinima){
 function validarTelefono() {
     let telefono = document.getElementById('telefono').value;
     let telefonoErrorTxt = document.getElementById('telefonoError');
-    let telefonoTxt =  Regex = ("^(\\+\\d{1,3}[- ]?)?\\d{10}$");
+    let telefonoTxt = Regex = ("^(\\+\\d{1,3}[- ]?)?\\d{10}$");
 
-    if(telefonoRegex.test(telefonoTxt.trim().length < 20 && telefonoTxt.trim().length > 6)){
+    if (telefonoRegex.test(telefonoTxt.trim().length < 20 && telefonoTxt.trim().length > 6)) {
         telefonoErrorTxt.textContent = "Por favor, introduce un número de teléfono válido.";
-        document.getElementById('telefono').classList.add ('error-input');
+        document.getElementById('telefono').classList.add('error-input');
         document.getElementById('telefono').classList.remove('success');
         return true;
-    }else{
+    } else {
         telefonoErrorTxt.textContent = ''.
-     
-        document.getElementById('telefono').classList.remove ('succes');
+
+            document.getElementById('telefono').classList.remove('succes');
         document.getElementById('telefono').classList.add('error-input');
         return false;
     }
